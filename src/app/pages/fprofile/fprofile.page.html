@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-button fill='clear' slot='start'>
+          <ion-back-button defaultHref='/'></ion-back-button>
+        </ion-button>
+      <ion-title>{{fuser}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+  <div class="image">
+      <ion-card *ngFor="let item of imageData; let i = index"> 
+          {{toStringImg(item)}}
+          <img style="height: 200px;" [src]='imageURL'>
+      </ion-card>
+  </div>
+
+  <h2 style="text-align: center;">{{fuser}}'s Personal Information</h2>
+  <div class="ThisProfile">
+    <ng-container *ngFor="let item of profileData; let i = index"> 
+      <div style="color:white; padding: 5px; background-color: gray;">
+        <h4>Fullname: {{item[0].Fullname}}</h4>
+        <h4>Nickname: {{item[0].Nickname}}</h4>
+        <h4>Sex: {{item[0].Sex}}</h4>
+        <h4>Age: {{item[0].Age}}</h4>
+        <h4>Description: {{item[0].Description}}</h4>
+      </div>  
+    </ng-container>
+  </div>
+
+  <h2 style="text-align: center;">{{fuser}} Priority</h2>
+  <div class="YourPriority">
+      <ion-card *ngFor="let item of priorityData; let i = index">
+        <div class="PriorityCard">
+          <h5 style="text-decoration:underline;">{{item[0]}}</h5>
+          <p>{{item[1]}}</p>
+        </div>  
+      </ion-card>
+  </div>
+</ion-content>

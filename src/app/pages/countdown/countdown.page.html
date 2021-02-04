@@ -1,0 +1,43 @@
+<ion-content color='dark'>
+  <!-- <div *ngIf='data | async as data' style="height: 0px;">
+    
+  </div> -->
+  {{getDate(data)}}
+  <div style='margin-top: 50px; text-align: center;'> <!--*ngIf='data | async as data'-->
+    <!-- {{86400 - (data.unixtime+25200)%86400}} Convert Unixtime to Countdown(Until Midnight) Timer for Thailand GMT+7 -->
+    <h1>{{time*1000 | date:'yyyy-MM-dd'}}</h1>
+    <circle-progress
+    [percent]= "(86400 - (time+25200)%86400)/864"
+    [radius]="100"
+    [animation]="false"
+    [animationDuration]="300"
+    [showSubtitle]="false"
+    [showUnits]= "false"
+    ></circle-progress>
+    <h2>{{(86400-(time+50400)%86400)*1000  | date:'HH:mm:ss'}}</h2>
+  </div>
+      <ng-container *ngFor="let item of arrData">
+        {{getLastDate(item[0],item[1])}}
+      </ng-container>
+  <ion-card>
+    <h3 style="text-align: center; color:yellow ; font-weight: bold;">{{value}}</h3>
+
+  </ion-card>
+</ion-content>
+
+<ion-tab-bar slot="bottom"> 
+  <ion-tab-button routerLink="/feed" routerDirection="forward">
+    <ion-icon name="contacts"></ion-icon>
+    <ion-label>Follows</ion-label>
+  </ion-tab-button>
+
+  <ion-tab-button routerLink="/countdown" routerDirection="forward">
+    <ion-icon name="alarm"></ion-icon>
+    <ion-label>CountDown</ion-label>
+  </ion-tab-button>
+  
+  <ion-tab-button routerLink="/profile" routerDirection="forward">
+    <ion-icon name="information-circle"></ion-icon>
+    <ion-label>Profile</ion-label>
+  </ion-tab-button>
+</ion-tab-bar>

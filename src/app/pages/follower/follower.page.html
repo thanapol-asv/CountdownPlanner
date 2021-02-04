@@ -1,0 +1,70 @@
+<ion-header>
+    <ion-toolbar color="sadd">
+      <ion-title>
+          <div style="text-align: center;">
+            <h1 style="color: white; margin: bottom=10px;">{{username}}</h1>
+          </div>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <div style="width: 50% ; display: inline-block;"><ion-button expand = "full" fill = "clear" routerLink="/feed" routerDirection="forward">Following</ion-button></div>
+    <div style="width: 50% ; display: inline-block;"><ion-button expand = "full" color = "sadd">Follower</ion-button></div>
+      
+  
+    <div *ngIf="showSkeleton" style="margin: auto; margin-left: 10px; margin-right: 10px;">
+      <ion-card *ngFor="let item of forSkeleton">
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        <ion-skeleton-text animated></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      </ion-card>    
+    </div> 
+   
+    <ion-card *ngFor="let items of friendList" (click)="showThisFriend(items)">
+      {{getFriendInfo(items)}}
+      <div style="margin: auto; margin-left: 10px; margin-right: 10px; min-height: 30px;">
+      <p style="font-weight: bold;">{{getFriend}}</p>
+      <br>
+      <ng-container *ngIf="items == friendShow">
+          <div style="height: 80px; width: 80px; display: inline-block;">
+              <ion-card *ngFor="let img of friendImage; let i = index"> 
+                  {{toStringImg(img)}}
+                  <img style="height: 80px; width: 80px" [src]='friendImg'>
+              </ion-card>
+          </div>
+          <div style="height: 80px; width: 200px; display: inline-block;">
+              <ng-container *ngFor="let FPF of friendProfile; let i = index"> 
+                  <p>{{FPF[0].Fullname}}</p>
+                  <p>{{FPF[0].Nickname}}</p>  
+            </ng-container>
+            <ng-container *ngFor="let FPR of friendPriority">{{getLastDate(FPR[0],FPR[1])}}</ng-container>
+            <p>{{value}}</p>
+          </div>
+          <ion-button (click)="delete(friendShow)" color="danger">Delete</ion-button>
+        <ion-button color="sadd" (click)="toFriendProfile(friendShow)">Goto Friend Profile</ion-button>
+      </ng-container>
+    </div>
+    
+    </ion-card>
+  </ion-content>
+  
+  <ion-tab-bar slot="bottom"> 
+    <ion-tab-button routerLink="/feed" routerDirection="forward">
+      <ion-icon name="contacts"></ion-icon>
+      <ion-label>Follows</ion-label>
+    </ion-tab-button>
+  
+    <ion-tab-button routerLink="/countdown" routerDirection="forward">
+      <ion-icon name="alarm"></ion-icon>
+      <ion-label>CountDown</ion-label>
+    </ion-tab-button>
+    
+    <ion-tab-button routerLink="/profile" routerDirection="forward">
+      <ion-icon name="information-circle"></ion-icon>
+      <ion-label>Profile</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+  

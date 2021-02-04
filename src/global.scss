@@ -24,3 +24,23 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+:root {
+    --ion-color-sadd: #242632;
+    --ion-color-sadd-rgb: 36,38,50;
+    --ion-color-sadd-contrast: #ffffff;
+    --ion-color-sadd-contrast-rgb: 255,255,255;
+    --ion-color-sadd-shade: #20212c;
+    --ion-color-sadd-tint: #3a3c47;
+  }
+  
+  .ion-color-sadd {
+    --ion-color-base: var(--ion-color-sadd);
+    --ion-color-base-rgb: var(--ion-color-sadd-rgb);
+    --ion-color-contrast: var(--ion-color-sadd-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-sadd-contrast-rgb);
+    --ion-color-shade: var(--ion-color-sadd-shade);
+    --ion-color-tint: var(--ion-color-sadd-tint);
+  }
+  
+  

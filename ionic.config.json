@@ -1,5 +1,7 @@
 {
   "name": "CountDownPlanner",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

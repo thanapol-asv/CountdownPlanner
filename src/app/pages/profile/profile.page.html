@@ -1,0 +1,103 @@
+<ion-header>
+    <ion-toolbar color="sadd">
+      <ion-title>
+        <div style="text-align: center;">
+          <h1 style="color: white; margin: bottom=10px;">Profile</h1>
+        </div>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+<ion-content>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="sadd">
+          <ion-icon name="paper-plane"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="top">
+          <ion-fab-button (click)="log()"><ion-icon name="log-out"></ion-icon></ion-fab-button>
+          <ion-fab-button><ion-icon name="settings" (click)="cProfile()"></ion-icon></ion-fab-button>
+          <ion-fab-button><ion-icon name="images" (click)="cImage()"></ion-icon></ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
+
+  <div class="image">
+      <ion-card *ngFor="let item of imageData; let i = index"> 
+          {{toStringImg(item)}}
+          <img style="height: 200px;" [src]='imageURL'>
+      </ion-card>
+      
+  </div>
+  <div class="YourPriority">
+  <ion-card *ngIf="cPic">
+    <div style="background-color: whitesmoke;">
+        <ion-input [(ngModel)]="cimageURL" placeholder="ImageURL"></ion-input>
+        <ion-button (click)="changeImage(cimageURL)" expand="full" color="warning">Upload</ion-button>
+        <ion-button (click)="cancelCI()" expand="full" color="danger">Cancel</ion-button>
+    </div>
+  </ion-card>
+  </div>
+  <h2 style="text-align: center;">Personal Information</h2>
+  <div class="ThisProfile">
+    <ng-container *ngIf="showProfile">
+    <ng-container *ngFor="let item of profileData; let i = index"> 
+      <div style="color:white; padding: 5px; background-color: gray;">
+        <h4>Fullname: {{item[0].Fullname}}</h4>
+        <h4>Nickname: {{item[0].Nickname}}</h4>
+        <h4>Sex: {{item[0].Sex}}</h4>
+        <h4>Age: {{item[0].Age}}</h4>
+        <h4>Description: {{item[0].Description}}</h4>
+      </div>  
+    </ng-container>
+  </ng-container>
+  </div>
+  <div class="YourPriority">
+  <ion-card *ngIf="profileAllow">
+      <div style="background-color: whitesmoke;">
+        <ion-input [(ngModel)]="fname" placeholder="Your Fullname"></ion-input>
+        <ion-input [(ngModel)]="nname" placeholder="Your Nickname"></ion-input>
+        <ion-input [(ngModel)]="age" placeholder="Your Age"></ion-input>
+        <ion-input [(ngModel)]="sex" placeholder="Your Sex"></ion-input>
+        <ion-input [(ngModel)]="desc" placeholder="Your Description"></ion-input>
+      </div>
+      <ion-button (click)="changeProfile(fname,nname,age,sex,desc)" expand="full" color="warning">Make Change</ion-button>
+      <ion-button (click)="cancelCP()" expand="full" color="danger">Cancel</ion-button>
+    </ion-card>
+</div>
+
+  <h2 style="text-align: center;">Your Priority</h2>
+  <div class="YourPriority">
+      <ion-card *ngFor="let item of priorityData; let i = index">
+        <div class="PriorityCard">
+          <h5 style="text-decoration:underline;">{{item[0]}}</h5>
+          <p>{{item[1]}}</p>
+          {{getLastDate(item[0])}}
+        </div>  
+      </ion-card>
+        <ion-card>
+          <div style="background-color: whitesmoke">
+              <ion-input type="text" [(ngModel)]="message" placeholder="Update today's priority"></ion-input>
+              <ion-button expand="full" (click)="upload(message)" color="warning">Update!</ion-button>
+          </div>
+        </ion-card>
+  </div>
+  
+
+
+</ion-content>
+
+<ion-tab-bar slot="bottom"> 
+  <ion-tab-button routerLink="/feed" routerDirection="forward">
+    <ion-icon name="contacts"></ion-icon>
+    <ion-label>Follows</ion-label>
+  </ion-tab-button>
+
+  <ion-tab-button routerLink="/countdown" routerDirection="forward">
+    <ion-icon name="alarm"></ion-icon>
+    <ion-label>CountDown</ion-label>
+  </ion-tab-button>
+  
+  <ion-tab-button routerLink="/profile" routerDirection="forward">
+    <ion-icon name="information-circle"></ion-icon>
+    <ion-label>Profile</ion-label>
+  </ion-tab-button>
+</ion-tab-bar>
